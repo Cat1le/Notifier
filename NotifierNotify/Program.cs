@@ -13,6 +13,11 @@ namespace NotifierNotify
                 MessageBox.Show("Not allowed to call externally");
                 return;
             }
+            if (!args[0].StartsWith("notifier-task-"))
+            {
+                MessageBox.Show("Invalid task name");
+                return;
+            }
             using var ts = new TaskService();
             ts.RootFolder.DeleteTask(args[0]);
             MessageBox.Show(
